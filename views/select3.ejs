@@ -1,0 +1,29 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Show message</title>
+</head>
+<body>
+  <h2>タレント一覧</h2>
+  <table border=1>
+    <tr>
+        <td></td>
+        <td>名前</td>
+        <td>生年月日</td>
+        <td>出身</td>
+        <td>所属グループ</td>
+    </tr>
+      <% for( let row of data ) { %>
+        
+        <tr>
+            <td><a href="/jidol/:id"><%= row.id %></a></td>
+            <td><%= row.name %></td>
+            <td><%= row.birthday %></td>
+            <td><%= row.birthplace %></td>
+            <td><%= row.team %></td>
+        </tr>
+      <% } %>
+  </table>
+</body>
+</html>
