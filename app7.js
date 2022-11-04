@@ -27,8 +27,16 @@ app.get("/team", (req, res) => {
 })
 
 app.get("/team/:team_id", (req,res) => {
-  db.serialized( () => {
-    db.all("select id, name from jidol inner join team on jidol.team_id=team.team_id order by name;")
+  db.serialize( () => {
+    let sql = "select id, name from jidol inner join team on jidol.team_id=team.team_id where team.team_id="+ req.params.team_id +";";
+    console.log(sql);
+    db.all(sql, (error, row) => {
+      if(error){
+        res.render('show2', {mes:"エラーです"});
+      }
+      console.log(row);
+      res.render('select4', {data:row});
+    })
   })
 })
 
