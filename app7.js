@@ -21,7 +21,7 @@ app.get("/team", (req, res) => {
             if( error ) {
                 res.render('show2', {mes:"エラーです"});
             }
-            res.render('select2', {data:row});
+            res.render('allgroup', {data:row});
         })
     })
 })
@@ -35,7 +35,7 @@ app.get("/team/:team_id", (req,res) => {
         res.render('show2', {mes:"エラーです"});
       }
       console.log(row);
-      res.render('select4', {data:row});
+      res.render('gmember', {data:row});
     })
   })
 })
@@ -46,14 +46,86 @@ app.get("/jidol", (req, res) => {
         if(error){
           res.render('show2', {mes:"エラーです"});
         }
-        res.render('select3', {data:row});
+        res.render('allmember', {data:row});
       })
     })
 })
 
+app.get("/jidol/:id", (req,res) => {
+  db.serialize( () => {
+    let sql = "select id, name, birthday, birthplace, team from jidol inner join team on jidol.team_id=team.team_id where id=" + req.params.id + ";";
+    console.log(sql);
+    db.all(sql, (error, row) => {
+      if(error){
+        res.render('show2', {mes:"エラーです"});
+      }
+      res.render('member', {data:row});
+    })
+  })
+})
+
+app.post("/insert1", (req, res) => {
+  let sql = 'insert into team (team, funs, debut) values ("'+ req.body.team +'","'+ req.body.funs +'","'+ req.body.debut +'");';
+  console.log(sql);
+  db.serialize( () => {
+    db.run( sql, (error, row) => {
+      console.log(error);
+      if(error){
+        res.render('show2', {mes:エラーです});
+      }
+      res.redirect('/team');
+    })
+  })
+  console.log(req.body);
+})
+
+app.post("/insert2",(req, res) => {
+  let nsql = 'select team_id from team where team.team="'+ req.body.team +'";'
+  console.log(nsql);
+  let sql = 'insert into jidol (name, birthday, birthplace, team_id) values ("'+ req.body.name + '","'+ req.body.birthday +'","'+req.body.birthplace+'",(select team_id from team where team.team="'+ req.body.team +'"));';
+  console.log(sql);
+  db.serialize( () => {
+    db.run( sql, (error, row) => {
+      console.log(error);
+      if(error){
+        res.render('show2', {mes:エラーです});
+      }
+      res.redirect('/jidol');
+    })
+  })
+  console.log(req.body);
+})
+
+app.post("/select1", (req, res) => {
+  let sql = 'select team_id, team, funs, debut from team where team="'+ req.body.team +'";';
+  console.log(sql);
+  db.serialize( () => {
+    db.all( sql, (error, row) => {
+      if(error){
+        res.render('show2', {mes:エラーです});
+      }
+      console.log(row)
+      res.render('group', {data:row});
+    })
+  })
+})
+
+app.post("/select2", (req, res) => {
+  let sql = 'select id, name, birthday, birthplace, team from jidol inner join team on jidol.team_id=team.team_id where name="'+ req.body.name +'";';
+  console.log(sql);
+  db.serialize( () => {
+    db.all( sql, (error, row) => {
+      if(error){
+        res.render('show2', {mes:エラーです});
+      }
+      console.log(row)
+      res.render('member', {data:row});
+    })
+  })
+})
 
 app.use(function(req, res, next) {
   res.status(404).send('ページが見つかりません');
 });
 
-app.listen(8080, () => console.log("Example app listening on port 8080!"));
+app.listen(80, () => console.log("Example app listening on port 80!"));

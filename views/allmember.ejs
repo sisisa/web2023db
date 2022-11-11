@@ -6,6 +6,9 @@
 </head>
 <body>
   <h2>タレント一覧</h2>
+  <form action="/">
+    <input type="submit" value="TOP">
+  </form>
   <table border=1>
     <tr>
         <td></td>
@@ -17,7 +20,7 @@
       <% for( let row of data ) { %>
         
         <tr>
-            <td><a href="/jidol/:id"><%= row.id %></a></td>
+            <td><a href="/jidol/<%=row.id%>"><%= row.id %></a></td>
             <td><%= row.name %></td>
             <td><%= row.birthday %></td>
             <td><%= row.birthplace %></td>
@@ -25,5 +28,9 @@
         </tr>
       <% } %>
   </table>
+
+  <form action="/public/insert2.html">
+    <input type="submit" value="追加">
+  </form>
 </body>
 </html>

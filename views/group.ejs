@@ -1,0 +1,22 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Show message</title>
+</head>
+<body>
+  <form action="/">
+    <input type="submit" value="TOP">
+  </form>
+  <table border=1>
+      <% for( let row of data ) { %>
+        <tr>
+          <td><a href="/team/<%= row.team_id %>"><%= row.team_id %></td>
+          <td><%= row.team %></td>
+          <td><%= row.funs %></td>
+          <td><%= row.debut %></td>
+        </tr>
+      <% } %>
+  </table>
+</body>
+</html>
