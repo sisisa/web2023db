@@ -17,57 +17,59 @@ body{
   border-radius:10px
 }
 
+/* 一覧表示 */
 #ichiran{
-  background:gray
+  position:relative;
+  background:gray;
+  height:150px;
+  width:100%
 }
-
 #ichiran ul{
+  position:absolute;
   list-style-type:none; /*箇条のポチ非表示*/
-  text-aline:center
+  background:red;
+  paddig:0 0;
+  margin:auto 0
 }
-
 #ichiran ul li{
-  display:inline-block
+  top:0;
+  display:inline-block;
+  background:pink;
 }
-
 #ichiran ul li a{
   display:inline-block;
   background:#009fff;
   border-radius:10px; /*角を丸く*/
   width:100px;
   padding:10px 10px;
-  margin:10px 0;
-  vertical-aline:middle; /*縦の表示位置*/
+  margin:10px 10px;
+  /*vertical-aline:middle; /*縦の表示位置*/
   font-weight:bold; /*文字を太文字*/
   text-decoration:none; /*リンクの下線消す*/
   color:white
 }
-
 #ichiran ul li a:hover{
   background:silver
 }
 
+/* 画像スライドショー */
 .wrap{
   display:flex;
   align-items:center;
   height:150px;
   overflow:hidden
 }
-
 .slider{
   display:flex;
-  animation:loop-slide 30s infinite linear 1s both
+  animation:loop-slide 60s infinite linear 1s both
 }
-
 .slider-item{
   height:150px;
   list-style-type:none
 }
-
 img{
   height:100%
 }
-
 @keyframes loop-slide{
   from{
     transform:translateX(0);
@@ -75,4 +77,26 @@ img{
   to{
     transform:translateX(-100%);
   }
+}
+
+/* 検索ページ */
+#search
+#search ul{
+  list-style-type:none
+}
+#search ul li{
+  display:inline-block;
+  background:blue;
+}
+#search ul li a{
+  display:inline-block;
+  background:#ff65da;
+  border-radius:10px; /*角を丸く*/
+  width:100px;
+  padding:10px 10px;
+  margin:10px 10px;
+  /*vertical-aline:middle; /*縦の表示位置*/
+  font-weight:bold; /*文字を太文字*/
+  text-decoration:none; /*リンクの下線消す*/
+  color:white
 }
