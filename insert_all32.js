@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('test3.db');
+const db = new sqlite3.Database('test4.db');
 
 let sqls = [
   'insert into team ("team_id", "team", "funs", "debut") values (1, "嵐", 3070000, "1999/5/23");',

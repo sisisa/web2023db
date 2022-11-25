@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('test3.db');
+const db = new sqlite3.Database('test4.db');
 
 let sql = `
 select id, name, team, funs from jidol inner join team on jidol.team_id=team.team_id;

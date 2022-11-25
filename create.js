@@ -1,10 +1,13 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('test2.db');
+const db = new sqlite3.Database('test4.db');
 
 let schema = `
-create table test(
+create table jidol(
   id integer primary key,
-  name text
+  name text,
+  birthday date,
+  birthplace text,
+  team_id integer
 );
 `
 

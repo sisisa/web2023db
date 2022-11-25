@@ -1,8 +1,8 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('test3.db');
+const db = new sqlite3.Database('test4.db');
 
 let sql = `
-insert into jidol ("id", "name", "birthday", "birthplace", "team_id") values (3, "櫻井翔", "1982/1/25", "東京都", 1);
+insert into jidol ("id", "name", "birthday", "birthplace", "team_id") values (16, "道枝駿佑", "2002/7/25", "大阪府", 3);
 `
 
 db.serialize( () => {

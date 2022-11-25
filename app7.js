@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('test3.db');
+const db = new sqlite3.Database('test4.db');
 
 app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.get("/", (req, res) => {
-  const message = "ジャニの表示をするページです";
+  const message = "ようこそ！！";
   res.render('show2', {mes:message});
 });
 
@@ -36,6 +36,23 @@ app.get("/team/:team_id", (req,res) => {
       }
       console.log(row);
       res.render('gmember', {data:row});
+    })
+  })
+})
+
+app.post("/gsort",(req, res) => {
+  let desc = "";
+  let rq = req.query;
+  console.log({rq});
+  if(req.query.order) desc = "desc";
+  let sql = "select team_id, team, funs, debut from team order by " + req.query.sort_item + " " + desc + ";";
+  console.log(sql);
+  db.serialize( () => {
+    db.all(sql, (error, data) => {
+      if(error){
+        res.render('show2', {mes:"エラーです"});
+      }
+      res.render('allgroup', {data:data});
     })
   })
 })
