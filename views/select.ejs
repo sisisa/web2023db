@@ -6,12 +6,14 @@
 </head>
 <body>
   <h2>都道府県ごとの人口</h2>
-  <table>
+  <table border="1">
       <% for( let row of data ) { %>
         <tr>
-            <td><%= row.id %></td>
-            <td><%= row.都道府県 %></td>
-            <td><%= row.人口 %></td>
+            
+            <td><a href='/db/<%= row.id %>'><%= row.id %></a></td>
+            <td><a href='/db/<%= row.都道府県 %>'><%= row.都道府県 %></a></td>
+            <td><a href='/db/<%= row.人口 %>'><%= row.人口 %></a></td>
+            
         </tr>
       <% } %>
   </table>
