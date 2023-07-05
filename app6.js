@@ -76,21 +76,26 @@ app.get("/top", (req, res) => {
 })
 
 app.post("/insert", (req, res) => {
-  let sql = `
-insert into example (タイトル,ジャンル,タグ,レビュー,url) values ("` + req.body.title + `;` + req.body.genre + `;` + req.body.tag + `　+ req.body.review + `,` + req.body.url `);
+    let sql = `
+insert into reading (title,genre,tag,review,url) values ("` + req.body.title +  `","` + req.body.genre + `","` + req.body.tag + `","`　+ req.body.review + `","` + req.body.url + `");
   `
-console.log(sql); 
-//   db.serialize( () => {
-// db.run( sql, (error, row) => {
-//   console.log(error);
-// if(error) {
-// res.render('show', {mes:"エラーです"});
-//   }
-//   // res.redirect('/db');
+  let sql2 = `
+insert into finished (finished,content,tag,impress,want_read) values ("` + req.body.finished +  `","` + req.body.content + `","`+ req.body.impress + `","` + req.body.want_read + `");
+  `
 
-//   });
-//     });
-//   console.log(req.body);
+console.log(sql); 
+console.log(sql2); 
+  db.serialize( () => {
+db.run( sql, (error, row) => {
+  console.log(error);
+if(error) {
+res.render('show', {mes:"エラーです"});
+  }
+  // res.redirect('/db');
+
+  });
+    });
+  console.log(req.body);
 });
 
 app.post("/public/read.html", (req, res) => {
