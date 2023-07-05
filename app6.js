@@ -50,7 +50,7 @@ app.get("/", (req, res) => {
 
 app.get("/db", (req, res) => {
     db.serialize( () => {
-        db.all("select id, 都道府県, 人口 from example;", (error, row) => {
+        db.all("select id, タイトル, ジャンル,　タグ,　レビュー,　URL from example;", (error, row) => {
             if( error ) {
                 res.render('show', {mes:"エラーです"});
             }
@@ -77,23 +77,23 @@ app.get("/top", (req, res) => {
 
 app.post("/insert", (req, res) => {
   let sql = `
-insert into example (都道府県,人口,大学) values ("` + req.body.name + `",` + req.body.jinko + `,` + req.body.daigaku + `);
+insert into example (タイトル,ジャンル,タグ,レビュー,url) values ("` + req.body.title + `;` + req.body.genre + `;` + req.body.tag + `　+ req.body.review + `,` + req.body.url `);
   `
 console.log(sql); 
-  db.serialize( () => {
-db.run( sql, (error, row) => {
-  console.log(error);
-if(error) {
-res.render('show', {mes:"エラーです"});
-  }
-  // res.redirect('/db');
+//   db.serialize( () => {
+// db.run( sql, (error, row) => {
+//   console.log(error);
+// if(error) {
+// res.render('show', {mes:"エラーです"});
+//   }
+//   // res.redirect('/db');
 
-  });
-    });
-  console.log(req.body);
-  });
+//   });
+//     });
+//   console.log(req.body);
+});
 
-app.post("/inpro.html", (req, res) => {
+app.post("/public/read.html", (req, res) => {
   let sql = `
 insert into example (都道府県,人口,大学) values ("` + req.body.name + `",` + req.body.jinko + `,` + req.body.daigaku + `);
   `
