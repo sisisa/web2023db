@@ -1,0 +1,45 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Show message</title>
+</head>
+<body>
+  <h2>読了したかどうかを確認</h2>
+  <table border="1">
+      <% for( let row of data ) { %>
+        <style>
+            table thead tr th {
+            	color: black;
+            	background: #b0c4de;
+              font-weight: bold;
+            }
+            
+          </style>
+        <thead>
+        <tr>
+            <th colspan="1">id</th>
+            <!-- <th colspan="1">タイトル</th>            
+            <th colspan="1">読了</th> -->
+            <th colspan="1">内容</th>
+            <th colspan="1">読んだ感想</th>
+            <th colspan="1">次に読みたい本</th>
+            </tr>
+    </thead>
+        <tr>
+            <!-- <td><a href='/db/<%= row.id %>'><%= row.id %></a></td>          
+            <td><a href='/db/<%= row.finished %>'><%= row.finished %></a></td>
+            <td><a href='/db/<%= row.content %>'><%= row.content %></a></td>
+            <td><a href='/db/<%= row.impress %>'><%= row.impress %></a></td> 
+            <td><a href='/db/<%= row.want_read %>'><%= row.want_read %></a></td> -->
+            <td><p='/db/<%= row.id %>'><%= row.id %></p></td>
+            <!-- <td><p='/db/<%= row.title %>'><%= row.title %></p></td>
+            <td><p='/db/<%= row.finished %>'><%= row.finished %></p></td> -->
+            <td><p='/db/<%= row.content %>'><%= row.content %></p></td>
+            <td><p='/db/<%= row.impress %>'><%= row.impress %></p></td> 
+            <td><p='/db/<%= row.want_read %>'><%= row.want_read %></p></td>
+        </tr>
+      <% } %>
+  </table>
+</body>
+</html>

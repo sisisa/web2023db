@@ -1,9 +1,10 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('test2.db');
+const db = new sqlite3.Database('readinglist.db');
 
 let sql = `
-delete from test where id=1;
+delete from finished;
 `
+ // where id=1
 
 db.serialize( () => {
 	db.run( sql, (error, row) => {

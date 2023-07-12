@@ -5,15 +5,41 @@
   <title>Show message</title>
 </head>
 <body>
-  <h2>都道府県ごとの人口</h2>
+  <h2>読んだ本の情報を追加</h2>
   <table border="1">
       <% for( let row of data ) { %>
+        <style>
+            table thead tr th {
+            	color: black;
+            	background: #b0c4de;
+              font-weight: bold;
+            }
+            
+          </style>
+        <thead>
         <tr>
-            
-            <td><a href='/db/<%= row.id %>'><%= row.id %></a></td>
-            <td><a href='/db/<%= row.都道府県 %>'><%= row.都道府県 %></a></td>
-            <td><a href='/db/<%= row.人口 %>'><%= row.人口 %></a></td>
-            
+            <th colspan="1">id</th>
+            <th colspan="1">タイトル</th>
+            <th colspan="1">ジャンル</th>
+            <th colspan="1">タグ</th>
+            <th colspan="1">レビュー</th>
+            <th colspan="1">URL</th>
+            </tr>
+    </thead>
+        <tr>
+            <!-- <td><a href='/db/<%= row.id %>'><%= row.id %></a></td>
+            <td><a href='/db/<%= row.title %>'><%= row.title %></a></td>
+            <td><a href='/db/<%= row.genre %>'><%= row.genre %></a></td>
+            <td><a href='/db/<%= row.tag %>'><%= row.tag %></a></td>
+            <td><a href='/db/<%= row.review %>'><%= row.review %></a></td>
+            <td><a href='/db/<%= row.url %>'><%= row.url %></a></td> -->
+
+          <td><p='/db/<%= row.id %>'><%= row.id %></p></td>
+            <td><p='/db/<%= row.title %>'><%= row.title %></p></td>
+            <td><p='/db/<%= row.genre %>'><%= row.genre %></p></td>
+            <td><p='/db/<%= row.tag %>'><%= row.tag %></p></td>
+            <td><p='/db/<%= row.review %>'><%= row.review %></p></td>
+            <td><p='/db/<%= row.url %>'><%= row.url %></p></td>
         </tr>
       <% } %>
   </table>

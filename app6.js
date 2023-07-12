@@ -50,11 +50,24 @@ app.get("/", (req, res) => {
 
 app.get("/db", (req, res) => {
     db.serialize( () => {
-        db.all("select id, タイトル, ジャンル,　タグ,　レビュー,　URL from example;", (error, row) => {
+        db.all("select id, title,genre,tag,review,url from reading;", (error, row) => {
             if( error ) {
                 res.render('show', {mes:"エラーです"});
             }
+          console.log(row);
             res.render('select', {data:row});
+        })
+    })
+})
+
+app.get("/db2", (req, res) => {
+    db.serialize( () => {
+        db.all("select id, finished,content,impress,want_read from finished;", (error, row) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+          console.log(row);
+            res.render('select2', {data:row});
         })
     })
 })
@@ -79,19 +92,37 @@ app.post("/insert", (req, res) => {
     let sql = `
 insert into reading (title,genre,tag,review,url) values ("` + req.body.title +  `","` + req.body.genre + `","` + req.body.tag + `","`　+ req.body.review + `","` + req.body.url + `");
   `
-  let sql2 = `
-insert into finished (finished,content,tag,impress,want_read) values ("` + req.body.finished +  `","` + req.body.content + `","`+ req.body.impress + `","` + req.body.want_read + `");
-  `
-
+//   let sql2 = `
+// insert into finished (finished,content,impress,want_read) values ("` + req.body.finished +  `","` + req.body.content + `","`+ req.body.impress + `","` + req.body.want_read + `");
+//   `
 console.log(sql); 
-console.log(sql2); 
+// console.log(sql2); 
   db.serialize( () => {
 db.run( sql, (error, row) => {
   console.log(error);
 if(error) {
 res.render('show', {mes:"エラーです"});
   }
-  // res.redirect('/db');
+  res.redirect('/db');
+
+  });
+    });
+  console.log(req.body);
+});
+
+app.post("/insert2", (req, res) => {
+
+  let sql2 = `
+insert into finished (finished,content,impress,want_read) values ("` + req.body.finished +  `","` + req.body.content + `","`+ req.body.impress + `","` + req.body.want_read + `");
+  `
+console.log(sql2); 
+  db.serialize( () => {
+db.run( sql2, (error, row) => {
+  console.log(error);
+if(error) {
+res.render('show', {mes:"エラーです"});
+  }
+  res.redirect('/db2');
 
   });
     });
